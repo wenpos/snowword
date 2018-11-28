@@ -1,0 +1,366 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Id</th>\n",
+       "      <th>SepalLengthCm</th>\n",
+       "      <th>SepalWidthCm</th>\n",
+       "      <th>PetalLengthCm</th>\n",
+       "      <th>PetalWidthCm</th>\n",
+       "      <th>Species</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>5.1</td>\n",
+       "      <td>3.5</td>\n",
+       "      <td>1.4</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>4.9</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>1.4</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>3</td>\n",
+       "      <td>4.7</td>\n",
+       "      <td>3.2</td>\n",
+       "      <td>1.3</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>4</td>\n",
+       "      <td>4.6</td>\n",
+       "      <td>3.1</td>\n",
+       "      <td>1.5</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>5</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>3.6</td>\n",
+       "      <td>1.4</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Id  SepalLengthCm  SepalWidthCm  PetalLengthCm  PetalWidthCm      Species\n",
+       "0   1            5.1           3.5            1.4           0.2  Iris-setosa\n",
+       "1   2            4.9           3.0            1.4           0.2  Iris-setosa\n",
+       "2   3            4.7           3.2            1.3           0.2  Iris-setosa\n",
+       "3   4            4.6           3.1            1.5           0.2  Iris-setosa\n",
+       "4   5            5.0           3.6            1.4           0.2  Iris-setosa"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "iris=pd.read_csv(\"../Iris.csv\")\n",
+    "iris.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Id</th>\n",
+       "      <th>SepalLengthCm</th>\n",
+       "      <th>SepalWidthCm</th>\n",
+       "      <th>PetalLengthCm</th>\n",
+       "      <th>PetalWidthCm</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>150.000000</td>\n",
+       "      <td>150.000000</td>\n",
+       "      <td>150.000000</td>\n",
+       "      <td>150.000000</td>\n",
+       "      <td>150.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>75.500000</td>\n",
+       "      <td>5.843333</td>\n",
+       "      <td>3.054000</td>\n",
+       "      <td>3.758667</td>\n",
+       "      <td>1.198667</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>43.445368</td>\n",
+       "      <td>0.828066</td>\n",
+       "      <td>0.433594</td>\n",
+       "      <td>1.764420</td>\n",
+       "      <td>0.763161</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>4.300000</td>\n",
+       "      <td>2.000000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>0.100000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>38.250000</td>\n",
+       "      <td>5.100000</td>\n",
+       "      <td>2.800000</td>\n",
+       "      <td>1.600000</td>\n",
+       "      <td>0.300000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>75.500000</td>\n",
+       "      <td>5.800000</td>\n",
+       "      <td>3.000000</td>\n",
+       "      <td>4.350000</td>\n",
+       "      <td>1.300000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>112.750000</td>\n",
+       "      <td>6.400000</td>\n",
+       "      <td>3.300000</td>\n",
+       "      <td>5.100000</td>\n",
+       "      <td>1.800000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>150.000000</td>\n",
+       "      <td>7.900000</td>\n",
+       "      <td>4.400000</td>\n",
+       "      <td>6.900000</td>\n",
+       "      <td>2.500000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "               Id  SepalLengthCm  SepalWidthCm  PetalLengthCm  PetalWidthCm\n",
+       "count  150.000000     150.000000    150.000000     150.000000    150.000000\n",
+       "mean    75.500000       5.843333      3.054000       3.758667      1.198667\n",
+       "std     43.445368       0.828066      0.433594       1.764420      0.763161\n",
+       "min      1.000000       4.300000      2.000000       1.000000      0.100000\n",
+       "25%     38.250000       5.100000      2.800000       1.600000      0.300000\n",
+       "50%     75.500000       5.800000      3.000000       4.350000      1.300000\n",
+       "75%    112.750000       6.400000      3.300000       5.100000      1.800000\n",
+       "max    150.000000       7.900000      4.400000       6.900000      2.500000"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#数据概览\n",
+    "iris.describe()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Iris-virginica     50\n",
+       "Iris-versicolor    50\n",
+       "Iris-setosa        50\n",
+       "Name: Species, dtype: int64"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#按单属性统计样本数\n",
+    "iris[\"Species\"].value_counts()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Index(['Id', 'SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm',\n",
+       "       'Species'],\n",
+       "      dtype='object')"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#列属性\n",
+    "iris.columns"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x1a7b1fdd320>"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "#散点图\n",
+    "iris.plot(kind=\"scatter\", x=\"SepalLengthCm\", y=\"SepalWidthCm\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'sns' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[1;32m<ipython-input-7-1bbe52a98685>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[1;32m----> 1\u001b[1;33m \u001b[0msns\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mjointplot\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mx\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;34m\"SepalLengthCm\"\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0my\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;34m\"SepalWidthCm\"\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mdata\u001b[0m\u001b[1;33m=\u001b[0m\u001b[0miris\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0msize\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;36m5\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[1;31mNameError\u001b[0m: name 'sns' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "sns.jointplot(x=\"SepalLengthCm\", y=\"SepalWidthCm\", data=iris, size=5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
